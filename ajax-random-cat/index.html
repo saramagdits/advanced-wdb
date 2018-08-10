@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Cat Generator</title>
+    <style>
+        img {
+            height: 500px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            margin: 20px;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://purr.objects-us-west-1.dream.io/i/EFtYj.jpg">
+        <button>Meow</button>
+    </div>
+
+    <!--jQuery CDN-->
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+    </script>
+    <script>
+        //target elements
+        // const img = document.querySelector('img');
+        // const btn = document.querySelector('button');
+        // //update image
+        // function randomCat () {
+        //     const request = $.ajax({
+        //         url: 'http://aws.random.cat/meow',
+        //         method: 'GET'
+        //     });
+        //     request.done((res) => img.src = res.file);
+        // };
+        // //event listener
+        // btn.addEventListener('click', randomCat);
+
+        //cleaner version
+        $('button').click(() => {
+            $.getJSON('http://aws.random.cat/meow')
+                .done(data => {
+                    $('img').attr('src', data.file);
+                })
+                .fail(() => alert('Oh no something went wrong!'));
+        });
+    </script>
+</body>
+</html>
